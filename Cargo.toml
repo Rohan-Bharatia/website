@@ -6,6 +6,10 @@ edition = "2024"
 repository = "https://github.com/Rohan-Bharatia/website.git"
 license = "MIT"
 
+[[bin]]
+name = "website"
+path = "src/main.rs"
+
 [dependencies]
 wasm-bindgen = "0.2"
 yew = { version = "0.21", features = ["csr"] }

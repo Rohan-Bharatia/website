@@ -14,7 +14,7 @@ pub enum Route {
 }
 
 #[allow(dead_code)]
-fn switch(route: Route) -> Html {
+pub fn switch(route: Route) -> Html {
     match route {
         Route::Home => html! { <HomePage /> },
         Route::NotFound => html! { <NotFound /> },
@@ -22,18 +22,21 @@ fn switch(route: Route) -> Html {
 }
 
 #[function_component(App)]
-fn app() -> Html {
+pub fn app() -> Html {
     html! {
         <BrowserRouter>
             <header>
                 <nav>
-                    <Link<Route> to={Route::Home}>{ "Home" }</Link<Route>>
+                    <Link<Route> to={Route::Home}>{"Home"}</Link<Route>>
                 </nav>
             </header>
-
             <main>
                 <Switch<Route> render={switch} />
             </main>
+            <footer>
+                <p>{"&copy; 2025 Rohan Bharatia"}</p>
+                <a href="https://github.com/Rohan-Bharatia/website" target="_BLANK">{"GitHub"}</a>
+            </footer>
         </BrowserRouter>
     }
 }

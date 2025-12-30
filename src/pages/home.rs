@@ -4,6 +4,7 @@ use yew::prelude::*;
 pub fn home_page() -> Html {
     html! {
         <div class="home">
+            <h1>{"Rohan Bharatia"}</h1>
         </div>
     }
 }
