@@ -34,8 +34,7 @@ pub fn app() -> Html {
                 <Switch<Route> render={switch} />
             </main>
             <footer>
-                <p>{"&copy; 2025 Rohan Bharatia"}</p>
-                <a href="https://github.com/Rohan-Bharatia/website" target="_BLANK">{"GitHub"}</a>
+                <p>{"Copyright (c) 2025 Rohan Bharatia. All Rights Reserved."}</p>
             </footer>
         </BrowserRouter>
     }

@@ -1,75 +1,375 @@
+:root {
+    /* Fonts */
+    --font-primary: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-secondary: 'Roboto', sans-serif;
+
+    /* Base Colors */
+    --color-bg: #121212;
+    --color-bg-container: #1e1e1e;
+    --color-bg-header-footer: #1f2937;
+    --color-text-primary: #e0e0e0;
+    --color-text-secondary: #a0a0a0;
+    --color-accent: #4f8ef7;
+    --color-accent-hover: #82b1ff;
+    --color-shadow: #00000099;
+
+    /* Additional Palette */
+    --color-success: #4caf50;
+    --color-success-hover: #66bb6a;
+    --color-warning: #fbc02d;
+    --color-warning-hover: #ffca28;
+    --color-error: #f44336;
+    --color-error-hover: #ef5350;
+    --color-info: #00bcd4;
+    --color-info-hover: #26c6da;
+    --color-border: #2c2c2c;
+    --color-input-bg: #1a1a1a;
+    --color-input-text: #e0e0e0;
+    --color-input-placeholder: #888888;
+    --color-button-text: #ffffff;
+
+    /* Spacing */
+    --space-xs: 5px;
+    --space-sm: 10px;
+    --space-md: 20px;
+    --space-lg: 30px;
+    --space-xl: 40px;
+
+    /* Border radius */
+    --radius-sm: 5px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+}
+
+/* Base resets */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
+    font-family: var(--font-primary);
+    color: var(--color-text-primary);
+}
+
+html,
+body {
+    height: 100%;
 }
 
 body {
-    background-color: #f4f7f9;
-    color: #333;
-    height: 100vh;
-    justify-content: center;
+    background-color: var(--color-bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
+    line-height: 1.6;
+}
+
+/* Headers & Footer */
+header,
+footer {
+    background-color: var(--color-bg-header-footer);
+    color: var(--color-text-primary);
+    padding: var(--space-md);
+    width: 100%;
 }
 
 header {
-    background-color: #3498db;
-    color: #fff;
-    padding: 15px;
-    border-radius: 8px;
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
 }
 
+footer {
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+/* Navigation */
 nav {
-    margin-top: 20px;
+    margin-top: var(--space-lg);
 }
 
+nav a {
+    color: var(--color-accent);
+    text-decoration: none;
+    margin: 0 var(--space-sm);
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--color-accent-hover);
+    text-decoration: underline;
+}
+
+/* Main content */
 main {
-    margin-top: 30px;
+    margin-top: var(--space-lg);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 var(--space-md);
+    flex: 1;
 }
 
 .app-container {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 15px #0000001a;
-    border-radius: 8px;
+    padding: var(--space-lg);
+    background-color: var(--color-bg-container);
+    box-shadow: 0 0 15px var(--color-shadow);
+    border-radius: var(--radius-md);
 }
 
-.home,
-.not-found {
-    margin: 20px;
-}
-
+/* Typography */
 h1 {
+    font-family: var(--font-secondary);
     font-size: 2.5rem;
-    margin-bottom: 10px;
+    margin-bottom: var(--space-sm);
+    color: var(--color-text-primary);
 }
 
 h2 {
-    color: #3498db;
+    font-family: var(--font-secondary);
     font-size: 2rem;
-    margin-bottom: 10px;
+    margin-bottom: var(--space-sm);
+    color: var(--color-accent);
 }
 
 p {
     font-size: 1.2rem;
-    color: #555;
+    color: var(--color-text-secondary);
 }
 
+/* Links */
 a {
-    color: #3498db;
+    color: var(--color-accent);
     text-decoration: none;
-    margin: 0 15px;
-    font-size: 1.2rem;
-}
-
-nav a {
-    color: #fff;
+    transition: color 0.3s ease;
 }
 
 a:hover {
+    color: var(--color-accent-hover);
     text-decoration: underline;
 }
+
+/* Buttons */
+button {
+    padding: var(--space-sm) var(--space-md);
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-family: var(--font-secondary);
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Button Variants */
+button.primary {
+    background-color: var(--color-accent);
+    color: var(--color-button-text);
+}
+
+button.primary:hover {
+    background-color: var(--color-accent-hover);
+    transform: translateY(-1px);
+}
+
+button.success {
+    background-color: var(--color-success);
+    color: var(--color-button-text);
+}
+
+button.success:hover {
+    background-color: var(--color-success-hover);
+}
+
+button.warning {
+    background-color: var(--color-warning);
+    color: var(--color-button-text);
+}
+
+button.warning:hover {
+    background-color: var(--color-warning-hover);
+}
+
+button.error {
+    background-color: var(--color-error);
+    color: var(--color-button-text);
+}
+
+button.error:hover {
+    background-color: var(--color-error-hover);
+}
+
+button.info {
+    background-color: var(--color-info);
+    color: var(--color-button-text);
+}
+
+button.info:hover {
+    background-color: var(--color-info-hover);
+}
+
+/* Inputs & Textareas */
+input,
+textarea,
+select {
+    background-color: var(--color-input-bg);
+    color: var(--color-input-text);
+    border: 1px solid var(--color-border);
+    padding: var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-primary);
+    width: 100%;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--color-input-placeholder);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 5px var(--color-accent);
+}
+
+/* Alerts */
+.alert {
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-sm);
+    margin: var(--space-sm) 0;
+    font-family: var(--font-primary);
+}
+
+.alert-success {
+    background-color: var(--color-success);
+    color: var(--color-button-text);
+}
+
+.alert-warning {
+    background-color: var(--color-warning);
+    color: var(--color-button-text);
+}
+
+.alert-error {
+    background-color: var(--color-error);
+    color: var(--color-button-text);
+}
+
+.alert-info {
+    background-color: var(--color-info);
+    color: var(--color-button-text);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.03);
+    }
+}
+
+/* Apply fade-in animation to containers */
+.app-container,
+header,
+footer,
+main {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* Headings gently fade in upwards */
+h1, h2, p {
+    animation: fadeUp 0.6s ease forwards;
+}
+
+/* Links */
+a {
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+a:hover {
+    transform: translateY(-2px);
+}
+
+/* Buttons */
+button {
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--color-shadow);
+}
+
+/* Alerts: subtle fade and pulse on mount */
+.alert {
+    animation: fadeIn 0.4s ease forwards;
+}
+
+.alert-success, .alert-warning, .alert-error, .alert-info {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.alert-success:hover,
+.alert-warning:hover,
+.alert-error:hover,
+.alert-info:hover {
+    animation: pulse 1s ease infinite;
+}
+
+/* Inputs & Textareas */
+input, textarea, select {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    transform: scale(1.01);
+}
+
+/* Nav Links: subtle hover movement */
+nav a:hover {
+    transform: translateY(-2px);
+}
+
+/* Optional: staggered fade-in for children inside app-container */
+.app-container > * {
+    opacity: 0;
+    animation: fadeUp 0.5s ease forwards;
+}
+
+.app-container > *:nth-child(1) { animation-delay: 0.1s; }
+.app-container > *:nth-child(2) { animation-delay: 0.2s; }
+.app-container > *:nth-child(3) { animation-delay: 0.3s; }
+.app-container > *:nth-child(4) { animation-delay: 0.4s; }
