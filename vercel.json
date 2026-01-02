@@ -1,8 +1,8 @@
 {
-  "outputDirectory": "dist",
-  "functions": {
-    "src/**/*.rs": {
-      "runtime": "vercel-rust@4.0.9"
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
-  }
+  ]
 }
