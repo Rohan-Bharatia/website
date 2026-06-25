@@ -1,25 +1,33 @@
 import { Container } from "./Container";
+import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
 import { socialLinks } from "@/lib/data";
 
 export function Footer() {
     return (
-        <footer className="border-t py-10">
-            <Container className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <footer>
+            <Separator />
+            <Container className="flex flex-col gap-4 py-10 md:flex-row md:items-center md:justify-between">
                 <p className="text-sm text-muted-foreground">
-                    © {new Date().getFullYear()} Your Name. All rights reserved.
+                    © {new Date().getFullYear()} Rohan Bharatia. All rights reserved.
                 </p>
 
-                <div className="flex gap-4 text-sm">
+                <div className="flex flex-wrap gap-1">
                     {socialLinks.map((s) => (
-                        <a
+                        <Button
                             key={s.name}
-                            href={s.url}
-                            target="_BLANK"
-                            rel="noreferrer"
-                            className="text-muted-foreground hover:text-foreground"
+                            variant="ghost"
+                            size="sm"
+                            asChild
                         >
-                            {s.name}
-                        </a>
+                            <a
+                                href={s.url}
+                                target="_BLANK"
+                                rel="noreferrer"
+                            >
+                                {s.name}
+                            </a>
+                        </Button>
                     ))}
                 </div>
             </Container>

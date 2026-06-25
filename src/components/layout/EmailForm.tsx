@@ -1,10 +1,20 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
 import { contactSchema, sendContactEmail } from "@/lib/email";
 import type { ContactFormData } from "@/lib/email";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 
 export function ContactForm() {
-    const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<ContactFormData>({
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors, isSubmitting },
+    } = useForm<ContactFormData>({
         resolver: zodResolver(contactSchema),
     });
 
@@ -12,26 +22,62 @@ export function ContactForm() {
         try {
             await sendContactEmail(data);
             reset();
-            alert("Message sent!");
-        } catch (err: any) {
-            alert(err.message);
+            toast.success("Message sent!", {
+                description: "Thanks for reaching out. I'll get back to you soon.",
+            });
+        } catch (err: unknown) {
+            toast.error("Failed to send message", {
+                description: err instanceof Error ? err.message : "Something went wrong.",
+            });
         }
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <input {...register("name")} placeholder="Name" />
-            {errors.name && <p>{errors.name.message}</p>}
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+            <div className="space-y-1.5">
+                <Label htmlFor="name">Name</Label>
+                <Input
+                    id="name"
+                    placeholder="Your name"
+                    aria-invalid={!!errors.name}
+                    {...register("name")}
+                />
+                {errors.name && (
+                    <p className="text-sm text-destructive">{errors.name.message}</p>
+                )}
+            </div>
 
-            <input {...register("email")} placeholder="Email" />
-            {errors.email && <p>{errors.email.message}</p>}
+            <div className="space-y-1.5">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                    id="email"
+                    type="email"
+                    placeholder="you@example.com"
+                    aria-invalid={!!errors.email}
+                    {...register("email")}
+                />
+                {errors.email && (
+                    <p className="text-sm text-destructive">{errors.email.message}</p>
+                )}
+            </div>
 
-            <textarea {...register("message")} placeholder="Message" />
-            {errors.message && <p>{errors.message.message}</p>}
+            <div className="space-y-1.5">
+                <Label htmlFor="message">Message</Label>
+                <Textarea
+                    id="message"
+                    placeholder="What's on your mind?"
+                    rows={5}
+                    aria-invalid={!!errors.message}
+                    {...register("message")}
+                />
+                {errors.message && (
+                    <p className="text-sm text-destructive">{errors.message.message}</p>
+                )}
+            </div>
 
-            <button disabled={isSubmitting}>
-                {isSubmitting ? "Sending..." : "Send"}
-            </button>
+            <Button type="submit" disabled={isSubmitting} className="w-full">
+                {isSubmitting ? "Sending..." : "Send Message"}
+            </Button>
         </form>
     );
 }

@@ -1,5 +1,7 @@
 import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 export function ThemeToggle() {
     const [dark, setDark] = useState(false);
@@ -10,11 +12,20 @@ export function ThemeToggle() {
     }, [dark]);
 
     return (
-        <button
-            onClick={() => setDark((d) => !d)}
-            className="rounded-md p-2 hover:bg-muted"
-        >
-            {dark ? <Sun size={16} /> : <Moon size={16} />}
-        </button>
+        <Tooltip>
+            <TooltipTrigger asChild>
+                <Button
+                    variant="ghost"
+                    size="icon-sm"
+                    onClick={() => setDark((d) => !d)}
+                    aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
+                >
+                    {dark ? <Sun /> : <Moon />}
+                </Button>
+            </TooltipTrigger>
+            <TooltipContent>
+                {dark ? "Light mode" : "Dark mode"}
+            </TooltipContent>
+        </Tooltip>
     );
 }
