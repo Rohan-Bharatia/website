@@ -23,7 +23,7 @@ export type SkillGroup = {
 export const siteConfig = {
     name: "Rohan Bharatia",
     title: "Student & Aspiring Engineer",
-    description: "...",
+    description: "I build systems from the ground up: engines, embedded controllers, AI assistants, and full-stack web apps. Currently a student, always engineering.",
     url: "https://rohan-bharatia.vercel.app",
 };
 
