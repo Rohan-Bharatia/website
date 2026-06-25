@@ -27,15 +27,19 @@ app.post("/api/contact", async (req, res) => {
         });
 
         await transporter.sendMail({
-            from: email,
+            from: `Portfolio Contact <${process.env.EMAIL_USER}>`,
+            replyTo: `"${name}" <${email}>`,
             to: process.env.EMAIL_TO,
             subject: `Portfolio message from ${name}`,
-            text: message,
+            text: `Name: ${name}\nEmail: {email}\n\n${message}`,
+            html: `<p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><hr/><p>${message.replace(/\n/g, "<br/>")}</p>`
         });
 
         res.json({ success: true });
     } catch (err) {
-        res.status(500).json({ message: "Email failed to send" });
+        const message = err instanceof Error ? err.message : String(err);
+        console.error("[contact] send failed:", message);
+        res.status(500).json({ message });
     }
 });
 
